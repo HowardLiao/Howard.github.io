@@ -1,0 +1,93 @@
+[
+  {
+    "id": "VER-001",
+    "subjectName": "廖倫豪 博士",
+    "claim": "朝陽科技大學 資訊科技管理博士學位 (2014.10)",
+    "claimType": "學歷與學位",
+    "result": "confirmed",
+    "evidenceSourceIds": [
+      "SRC-005",
+      "SRC-006"
+    ],
+    "verificationMethod": "國家圖書館法定論文系統查核與 Springer SCI 期刊論文作者比對。",
+    "conflictNotes": "無衝突。身分證字號與指導教授資訊完全吻合。",
+    "reviewerNotes": "已確認具備資訊科技管理博士學位，典藏編號有效。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "已完成永久核實。"
+  },
+  {
+    "id": "VER-002",
+    "subjectName": "廖倫豪 博士",
+    "claim": "跨國網絡科技與娛樂平台集團 副總 暨 IT Director (直報 Global CIO)",
+    "claimType": "工作經歷",
+    "result": "confirmed",
+    "evidenceSourceIds": [
+      "SRC-001",
+      "SRC-002",
+      "SRC-003"
+    ],
+    "verificationMethod": "Google Cloud 官方全球影音採訪、CIO Taiwan 封面人物專訪與 iThome 專題採訪。",
+    "conflictNotes": "無衝突。已進行去識別化匿名合規處理。",
+    "reviewerNotes": "雙重媒體核實無誤。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "已完成永久核實。"
+  },
+  {
+    "id": "VER-003",
+    "subjectName": "廖倫豪 博士",
+    "claim": "ISO 27001 資安與 ISO 42001 (AIMS) AI 治理主任稽核員認證",
+    "claimType": "專業證照",
+    "result": "confirmed",
+    "evidenceSourceIds": [
+      "SRC-008"
+    ],
+    "verificationMethod": "核實本機檢附之國際驗證機構考試合格認證證書影本。",
+    "conflictNotes": "無衝突。持有人姓名與專長對齊。",
+    "reviewerNotes": "證書有效。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "已完成永久核實。"
+  },
+  {
+    "id": "VER-004",
+    "subjectName": "廖倫豪 博士",
+    "claim": "國家圖書館「臺灣碩博士論文知識加值系統」專屬研究指導 ID: 106IKTC0183002",
+    "claimType": "學術指導典藏",
+    "result": "confirmed",
+    "evidenceSourceIds": [
+      "SRC-010"
+    ],
+    "verificationMethod": "國家圖書館官方系統代碼反向查詢確認。",
+    "conflictNotes": "無衝突。",
+    "reviewerNotes": "已確認具備國家級學術指導與口試委員資格。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "已完成永久核實。"
+  },
+  {
+    "id": "VER-005",
+    "subjectName": "廖倫豪 博士",
+    "claim": "財團法人康善基金會 董事兼資訊長 (CIO) CSR 數位公益",
+    "claimType": "社會責任",
+    "result": "confirmed",
+    "evidenceSourceIds": [
+      "SRC-011"
+    ],
+    "verificationMethod": "康善基金會官方網站董事組織架構與公益活動紀錄查證。",
+    "conflictNotes": "無衝突。",
+    "reviewerNotes": "公益受聘董事確認無誤。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "已完成永久核實。"
+  },
+  {
+    "id": "VER-006",
+    "subjectName": "廖倫豪 博士",
+    "claim": "同名同姓「廖倫豪」之體育/非 IT 領域資訊排除",
+    "claimType": "身分消歧",
+    "result": "excluded",
+    "evidenceSourceIds": [],
+    "verificationMethod": "比對專業經歷、出生年份 (1973)、學歷及技能關鍵字。",
+    "conflictNotes": "同名人物為體育或無相關領域從業者，已主動排除。",
+    "reviewerNotes": "已建立嚴格消歧防護網，確保資料庫純淨度。",
+    "verifiedAt": "2026-08-14T12:00:00Z",
+    "nextAction": "持續監控排除。"
+  }
+]

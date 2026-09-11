@@ -1,0 +1,30 @@
+{
+  "personId": "HL-001",
+  "displayNameZh": "廖倫豪 博士",
+  "displayNameEn": "Howard Liao, Ph.D.",
+  "displayNameJp": "廖倫豪 博士",
+  "identityStatus": "verified",
+  "portfolioUrl": "https://howardliao.github.io/Howard.github.io/",
+  "professionalHeadlineZh": "前線部署 AI 架構師 (Forward-Deployed AI Architect) 暨 跨國技術副總 (VP) / CIO / CISO | 20+年IT與工程底蘊",
+  "professionalHeadlineEn": "Forward-Deployed AI Architect & VP of Tech / CIO / CISO | 20+ Yrs IT & Engineering",
+  "professionalHeadlineJp": "グローバルアプリケーション統括責任者 | 技術副社長 兼 CIO / CISO | 27年IT・エンジニアリング実績",
+  "professionalSummaryZh": "我是廖倫豪博士，現任跨國網路科技與娛樂平台集團副總 暨 IT Director（直報 Global CIO / 董事會）。我具備 20+ 年跨國企業應用治理、SAP ERP 藍圖規劃、Java/Spring Boot 軟體工程架構與資安/AI SDLC 實戰經驗。我擅長將 CIO 企業策略轉化為 3 年應用地圖 (Application Roadmap)，掌管 SAP Clean Core、微服務 API-first、DevSecOps 品質關卡 (Quality Gates) 與全球 SI/顧問 供應商治理 (CAPEX/OPEX)。我精通 SoD、IAM 零信任資安與 AI 賦能開發治理，能把 ERP、資料平台、微服務與 AI 治理整合成可擴張、可稽核、可量化 ROI 的全球應用營運能力。",
+  "professionalSummaryEn": "I am Dr. Howard Liao, Vice President & IT Director at a Global Tech Group (reporting to Global CIO/Board). With 20+ years of multinational application governance, SAP ERP roadmap planning, Java/Spring Boot software engineering, DevSecOps, and AI SDLC expertise, I specialize in transforming enterprise strategy into 3-year application roadmaps. I govern SAP Clean Core, microservices API-first architecture, DevSecOps Quality Gates, and global SI vendor management (CAPEX/OPEX). I unify ERP, data platforms, security, and AI into scalable, auditable, and ROI-quantified global application operational capability.",
+  "professionalSummaryJp": "廖倫豪博士。グローバルITグループの副社長兼IT Directorを務め、CIO直属として20年以上のエンタープライズアプリケーション統括、SAP ERPロードマップ、Java/Spring Bootアーキテクチャ、DevSecOps、AI SDLCの実績を有します。SAP Clean Core、マイクロサービスAPI-first、品質ゲート(Quality Gates)、グローバルSIベンダー統括(CAPEX/OPEX)を推進。ERP、データ基盤、セキュリティ、AIガバナンスを統合し、定量的ROIを創出します。",
+  "verifiedExpertiseTags": [
+    "前線 AI 部署 (Forward-Deployed AI)",
+    "Agentic AI (自主代理模式)",
+    "全球應用治理 (Global App Governance)",
+    "SAP ERP & Clean Core",
+    "Java / Python 微服務架構",
+    "API-first & 企業系統整合",
+    "DevSecOps & AI for SDLC",
+    "多雲架構 & FinOps (-30% TCO)",
+    "Zero Trust & ISO 27001/42001",
+    "SI 供應商與 CAPEX/OPEX 治理",
+    "Monday.com / ClickUp / Notion"
+  ],
+  "contactPolicy": "直報 Global CIO / 董事會 / 高階獵才請以 LinkedIn 或 Email 聯繫。",
+  "updatedAt": "2026-08-14T12:00:00Z",
+  "publicDisclosureLevel": "public_anonymized"
+}

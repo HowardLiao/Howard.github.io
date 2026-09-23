@@ -1869,7 +1869,8 @@ footer p {
         text-overflow: ellipsis;
     }
     
-    .btn-contact-nav {
+    .btn-contact-nav,
+    .btn-download-nav {
         display: none !important; /* Hide from top header bar on mobile */
     }
 

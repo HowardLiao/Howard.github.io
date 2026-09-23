@@ -49,11 +49,16 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 16px);
     background-color: var(--bg-dark);
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+}
+
+section[id], header[id], div[id] {
+    scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 body {
@@ -317,6 +322,7 @@ h1, h2, h3, h4, h5, h6 {
     mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
     z-index: 1;
+    pointer-events: none;
 }
 
 .hero .container {
@@ -468,6 +474,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.25), rgba(var(--purple-rgb), 0.25), rgba(var(--secondary-rgb), 0.1));
     filter: blur(40px);
     z-index: 1;
+    pointer-events: none;
     animation: rotate 12s linear infinite;
 }
 
@@ -1851,15 +1858,24 @@ footer p {
         padding: 0 16px;
     }
     
+    .logo {
+        min-width: 0;
+        max-width: calc(100% - 56px);
+        overflow: hidden;
+    }
+
     .logo-main {
-        font-size: 1.05rem;
-        gap: 6px;
+        font-size: 0.92rem;
+        gap: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .logo-sub {
-        font-size: 0.58rem;
-        letter-spacing: 0.5px;
-        max-width: 220px;
+        font-size: 0.55rem;
+        letter-spacing: 0.3px;
+        max-width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1868,6 +1884,10 @@ footer p {
     .btn-contact-nav {
         display: none !important; /* Hide from top header bar on mobile */
     }
+
+    .navbar > .container > .lang-selector {
+        display: none !important; /* Managed via mobile drawer menu */
+    }
     
     .mobile-menu-toggle {
         display: flex;
@@ -1875,12 +1895,16 @@ footer p {
         justify-content: center;
         width: 44px;
         height: 44px;
+        min-width: 44px;
+        flex-shrink: 0;
+        margin-left: auto;
         border-radius: 10px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         color: var(--text-primary);
         cursor: pointer;
         padding: 0;
+        z-index: 1001;
     }
     
     .nav-links {
@@ -3217,6 +3241,103 @@ footer p {
     margin-top: 24px;
 }
 
+/* ========================================================
+   DEFINITIVE MOBILE ERGONOMICS & INTERACTION OVERRIDES (<= 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Touch Feedback & Instant Response */
+    button, .btn-primary, .btn-secondary, .tab-btn, .console-tab-btn, .lang-btn, .nav-link a, .social-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 240, 255, 0.2);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    button:active, .btn-primary:active, .btn-secondary:active, .tab-btn:active, .console-tab-btn:active, .lang-btn:active, .nav-link a:active {
+        transform: scale(0.97) !important;
+        opacity: 0.9;
+    }
+
+    /* Chapter 4 STAR Tabs: Full-width Ergonomic Touch Targets */
+    .cases-tabs {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .tab-btn {
+        width: 100% !important;
+        padding: 14px 18px !important;
+        font-size: 0.92rem !important;
+        min-height: 52px !important;
+        border-radius: 14px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    /* Chapter 6 Console Tabs: Smooth Horizontal Swipe Bar */
+    .alignment-console {
+        padding: 18px 14px !important;
+        border-radius: 18px !important;
+    }
+
+    .console-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        gap: 10px !important;
+        padding: 6px 4px 14px 4px !important;
+        margin-bottom: 18px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .console-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .console-tab-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        padding: 10px 18px !important;
+        font-size: 0.88rem !important;
+        min-height: 46px !important;
+        border-radius: 24px !important;
+    }
+
+    /* Responsive Grid Single-Column Unifications */
+    .edu-card-grid,
+    .recognition-grid,
+    .console-grid-2col,
+    .philosophy-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* Contact Form Polish */
+    .contact-form-panel {
+        padding: 24px 18px !important;
+    }
+
+    .form-control {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
+        min-height: 48px !important;
+    }
+
+    .btn-form-submit {
+        width: 100% !important;
+        min-height: 52px !important;
+        font-size: 1rem !important;
+        justify-content: center !important;
+    }
+}
+
 /* Smooth Touch Scrolling & Prevent Horizontal Overflow */
 html, body {
     max-width: 100vw;
@@ -4412,7 +4533,7 @@ html, body {
                 
                 <!-- Contact Form Mock -->
                 <div class="contact-form-panel glass-card reveal">
-                    <form onsubmit="event.preventDefault(); alert('感謝您的聯繫！將盡速與您回覆。');">
+                    <form id="contact-form">
                         <div class="form-group">
                             <label class="form-label" for="user-name">您的姓名 / 企業名稱 <span class="en-label">Name / Company</span></label>
                             <input class="form-control" type="text" id="user-name" required placeholder="例如：高階經理人招募委員會 / 獵頭顧問">
@@ -4443,71 +4564,283 @@ html, body {
         </div>
     </footer>
 
-    
+    <script src="translations.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Howard Liao, Ph.D. Executive Portfolio - Unified Interactive Controller
+ * High-reliability Mobile & Desktop Touch Interactions, Tab Navigation, and Form Submission
+ */
 
-    // 1. Sticky Navigation Scroll Effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+// 1. Immediate Global Definitions for Inline Handlers
+window.switchConsoleTab = function(tabName) {
+    const tabBtns = document.querySelectorAll('.console-tab-btn');
+    const panes = document.querySelectorAll('.console-pane');
+
+    tabBtns.forEach(btn => {
+        const isMatch = btn.getAttribute('data-tab') === tabName;
+        if (isMatch) {
+            btn.classList.add('active');
+            // Auto-center active tab in horizontal mobile scrollview
+            try {
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            } catch (err) {}
         } else {
-            navbar.classList.remove('scrolled');
+            btn.classList.remove('active');
         }
     });
 
-    // 2. Mobile Menu Toggle
+    panes.forEach(pane => {
+        if (pane.id === `pane-${tabName}`) {
+            pane.classList.add('active');
+        } else {
+            pane.classList.remove('active');
+        }
+    });
+};
+
+window.switchLang = function(lang, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    try {
+        localStorage.setItem('hl_lang', lang);
+    } catch(err) {
+        console.warn('LocalStorage not accessible:', err);
+    }
+    const hash = window.location.hash || '';
+    let target = 'index.html';
+    if (lang === 'en') {
+        target = 'index_en.html';
+    } else if (lang === 'ja') {
+        target = 'index_ja.html';
+    }
+    // Navigate reliably relative to current folder
+    const currentPath = window.location.pathname;
+    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+    window.location.href = basePath + target + hash;
+};
+
+// 2. DOM Ready Orchestration
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Sticky Navigation with RequestAnimationFrame ---
+    const navbar = document.getElementById('navbar');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // --- Mobile Menu Drawer Controller ---
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.getElementById('nav-links');
-    
-    mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const isActive = navLinks.classList.contains('active');
-        document.body.style.overflow = isActive ? 'hidden' : '';
-        mobileMenuToggle.innerHTML = isActive 
-            ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`
-            : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-    });
 
-    // Close menu when any navigation link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+    const closeMobileMenu = () => {
+        if (navLinks && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
-            mobileMenuToggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-        });
-    });
+            if (mobileMenuToggle) {
+                mobileMenuToggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+    };
 
-    // 3. Cursor Glow Effect Tracker for Glass Cards
-    const glassCards = document.querySelectorAll('.glass-card, .hero-card');
-    glassCards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
+    const openMobileMenu = () => {
+        if (navLinks) {
+            navLinks.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (mobileMenuToggle) {
+                mobileMenuToggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+                mobileMenuToggle.setAttribute('aria-expanded', 'true');
+            }
+        }
+    };
 
-    // 4. Scroll Reveal Animations (IntersectionObserver)
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Trigger only once
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navLinks.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-    
-    reveals.forEach(reveal => revealObserver.observe(reveal));
+    }
 
-    // 5. Dynamic Dashboard Sparkline Generator
+    // --- Universal Smooth Scroll for All Anchor Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const targetEl = document.querySelector(href);
+            if (targetEl) {
+                e.preventDefault();
+                closeMobileMenu();
+
+                // Compute exact offset factoring header
+                const headerOffset = 76;
+                const elementPosition = targetEl.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Update URL hash cleanly
+                try {
+                    history.pushState(null, null, href);
+                } catch (err) {}
+            }
+        });
+    });
+
+    // --- Chapter 4: Case Study Tabs Controller ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const casePanes = document.querySelectorAll('.case-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const caseId = btn.getAttribute('data-case');
+
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            casePanes.forEach(pane => {
+                if (pane.getAttribute('data-case') === caseId) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // --- Chapter 6: Playbook Console Tabs Direct Listeners ---
+    document.querySelectorAll('.console-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabName = this.getAttribute('data-tab');
+            if (tabName) {
+                window.switchConsoleTab(tabName);
+            }
+        });
+    });
+
+    // --- Chapter 7: Executive Contact Form Submission ---
+    const contactForms = document.querySelectorAll('form');
+    contactForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Locate submit button
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
+            // Detect current language for executive confirmation response
+            const currentLang = document.documentElement.lang || 'zh-Hant';
+            let confirmMsg = '✓ 您的洽談訊息已成功送出！廖倫豪 博士 (Howard Liao, Ph.D.) 將以最高機密等級於 24 小時內親自與您聯繫。';
+            let sendingMsg = '正在安全加密傳輸...';
+            
+            if (currentLang.startsWith('en')) {
+                confirmMsg = '✓ Your request has been securely submitted! Dr. Howard Liao will personally reach out to you within 24 hours under strict discretion.';
+                sendingMsg = 'Transmitting securely...';
+            } else if (currentLang.startsWith('ja')) {
+                confirmMsg = '✓ お問い合わせを送信いたしました。廖倫豪 博士 (Howard Liao) より24時間以内に親しくご連絡申し上げます。';
+                sendingMsg = '暗号化送信中...';
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<span>⏳</span> ${sendingMsg}`;
+            }
+
+            // Simulate ultra-fast secure transmission
+            setTimeout(() => {
+                // Remove existing toast if any
+                const existingToast = form.querySelector('.form-toast-banner');
+                if (existingToast) existingToast.remove();
+
+                // Create executive toast banner
+                const toast = document.createElement('div');
+                toast.className = 'form-toast-banner';
+                toast.style.cssText = `
+                    margin-top: 18px;
+                    padding: 16px 20px;
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(16, 185, 129, 0.35);
+                    border-radius: 12px;
+                    color: #10b981;
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                    font-weight: 500;
+                    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+                    animation: fadeIn 0.4s ease;
+                `;
+                toast.innerHTML = confirmMsg;
+
+                form.appendChild(toast);
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+
+                // Reset form inputs
+                form.reset();
+
+                // Auto-scroll toast into full view
+                try {
+                    toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } catch(e) {}
+            }, 600);
+        });
+    });
+
+    // --- Cursor Glow Effect (Desktop Only) ---
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const glassCards = document.querySelectorAll('.glass-card, .hero-card');
+        glassCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    }
+
+    // --- Scroll Reveal Animations ---
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
+        });
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+    } else {
+        reveals.forEach(r => r.classList.add('active'));
+    }
+
+    // --- Dynamic Sparklines (Observability) ---
     const generateSparkline = (containerId, barCount = 18, colorClass = '') => {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -4517,30 +4850,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const bar = document.createElement('div');
             bar.classList.add('spark-bar');
             if (colorClass) bar.classList.add(colorClass);
-            
-            // Random initial height between 15% and 85%
             const initialHeight = Math.floor(Math.random() * 70) + 15;
             bar.style.height = `${initialHeight}%`;
             container.appendChild(bar);
         }
         
-        // Active pulse animation loop
         setInterval(() => {
             const bars = container.querySelectorAll('.spark-bar');
             bars.forEach(bar => {
-                // Slight fluctuation
                 const currentHeight = parseFloat(bar.style.height);
                 const delta = (Math.random() * 20 - 10);
                 let newHeight = Math.max(10, Math.min(95, currentHeight + delta));
                 bar.style.height = `${newHeight}%`;
             });
-        }, 1500);
+        }, 1800);
     };
 
     generateSparkline('sparkline-1', 18, 'pulse-green');
     generateSparkline('sparkline-2', 18, '');
 
-    // 6. Dynamic Log Message Streamer (SIEM Simulation)
+    // --- Dynamic Log Streamer (SIEM Simulation) ---
     const logsContainer = document.getElementById('dash-logs');
     if (logsContainer) {
         const sampleLogs = [
@@ -4563,79 +4892,13 @@ document.addEventListener('DOMContentLoaded', () => {
             logLine.textContent = `[${timeStr}] ${logMsg}`;
             
             logsContainer.appendChild(logLine);
-            
-            // Keep container scrolled to bottom
             logsContainer.scrollTop = logsContainer.scrollHeight;
             
-            // Keep maximum 8 log lines to prevent memory bloat
             if (logsContainer.children.length > 8) {
                 logsContainer.removeChild(logsContainer.firstElementChild);
             }
-        }, 3200);
+        }, 3400);
     }
-
-    // 7. Case Study Tab Selector
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const casePanes = document.querySelectorAll('.case-pane');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const caseId = btn.getAttribute('data-case');
-            
-            // Toggle buttons
-            tabBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Toggle panes
-            casePanes.forEach(pane => {
-                pane.classList.remove('active');
-                if (pane.getAttribute('data-case') === caseId) {
-                    pane.classList.add('active');
-                }
-            });
-        });
-    });
-
-    // 8. C-Level Playbook Hub Tab Switching
-    window.switchConsoleTab = (tabName) => {
-        // Toggle buttons
-        const tabBtns = document.querySelectorAll('.console-tab-btn');
-        tabBtns.forEach(btn => {
-            if (btn.getAttribute('data-tab') === tabName) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        
-        // Toggle panes
-        const panes = document.querySelectorAll('.console-pane');
-        panes.forEach(pane => {
-            if (pane.id === `pane-${tabName}`) {
-                pane.classList.add('active');
-            } else {
-                pane.classList.remove('active');
-            }
-        });
-    };
-
-    // 9. Global Multi-Language Switcher (Preserves Hash & Smooth Transition)
-    window.switchLang = function(lang, e) {
-        if (e) e.preventDefault();
-        try {
-            localStorage.setItem('hl_lang', lang);
-        } catch(err) {
-            console.warn('LocalStorage not accessible:', err);
-        }
-        const hash = window.location.hash || '';
-        let target = 'index.html';
-        if (lang === 'en') {
-            target = 'index_en.html';
-        } else if (lang === 'ja') {
-            target = 'index_ja.html';
-        }
-        window.location.href = target + hash;
-    };
 });
 
 </script>

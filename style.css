@@ -37,11 +37,16 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 16px);
     background-color: var(--bg-dark);
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+}
+
+section[id], header[id], div[id] {
+    scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 body {
@@ -305,6 +310,7 @@ h1, h2, h3, h4, h5, h6 {
     mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
     z-index: 1;
+    pointer-events: none;
 }
 
 .hero .container {
@@ -456,6 +462,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.25), rgba(var(--purple-rgb), 0.25), rgba(var(--secondary-rgb), 0.1));
     filter: blur(40px);
     z-index: 1;
+    pointer-events: none;
     animation: rotate 12s linear infinite;
 }
 
@@ -1839,15 +1846,24 @@ footer p {
         padding: 0 16px;
     }
     
+    .logo {
+        min-width: 0;
+        max-width: calc(100% - 56px);
+        overflow: hidden;
+    }
+
     .logo-main {
-        font-size: 1.05rem;
-        gap: 6px;
+        font-size: 0.92rem;
+        gap: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .logo-sub {
-        font-size: 0.58rem;
-        letter-spacing: 0.5px;
-        max-width: 220px;
+        font-size: 0.55rem;
+        letter-spacing: 0.3px;
+        max-width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1856,6 +1872,10 @@ footer p {
     .btn-contact-nav {
         display: none !important; /* Hide from top header bar on mobile */
     }
+
+    .navbar > .container > .lang-selector {
+        display: none !important; /* Managed via mobile drawer menu */
+    }
     
     .mobile-menu-toggle {
         display: flex;
@@ -1863,12 +1883,16 @@ footer p {
         justify-content: center;
         width: 44px;
         height: 44px;
+        min-width: 44px;
+        flex-shrink: 0;
+        margin-left: auto;
         border-radius: 10px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         color: var(--text-primary);
         cursor: pointer;
         padding: 0;
+        z-index: 1001;
     }
     
     .nav-links {
@@ -3203,6 +3227,103 @@ footer p {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 24px;
+}
+
+/* ========================================================
+   DEFINITIVE MOBILE ERGONOMICS & INTERACTION OVERRIDES (<= 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Touch Feedback & Instant Response */
+    button, .btn-primary, .btn-secondary, .tab-btn, .console-tab-btn, .lang-btn, .nav-link a, .social-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 240, 255, 0.2);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    button:active, .btn-primary:active, .btn-secondary:active, .tab-btn:active, .console-tab-btn:active, .lang-btn:active, .nav-link a:active {
+        transform: scale(0.97) !important;
+        opacity: 0.9;
+    }
+
+    /* Chapter 4 STAR Tabs: Full-width Ergonomic Touch Targets */
+    .cases-tabs {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .tab-btn {
+        width: 100% !important;
+        padding: 14px 18px !important;
+        font-size: 0.92rem !important;
+        min-height: 52px !important;
+        border-radius: 14px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    /* Chapter 6 Console Tabs: Smooth Horizontal Swipe Bar */
+    .alignment-console {
+        padding: 18px 14px !important;
+        border-radius: 18px !important;
+    }
+
+    .console-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        gap: 10px !important;
+        padding: 6px 4px 14px 4px !important;
+        margin-bottom: 18px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .console-tabs::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .console-tab-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        padding: 10px 18px !important;
+        font-size: 0.88rem !important;
+        min-height: 46px !important;
+        border-radius: 24px !important;
+    }
+
+    /* Responsive Grid Single-Column Unifications */
+    .edu-card-grid,
+    .recognition-grid,
+    .console-grid-2col,
+    .philosophy-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* Contact Form Polish */
+    .contact-form-panel {
+        padding: 24px 18px !important;
+    }
+
+    .form-control {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
+        min-height: 48px !important;
+    }
+
+    .btn-form-submit {
+        width: 100% !important;
+        min-height: 52px !important;
+        font-size: 1rem !important;
+        justify-content: center !important;
+    }
 }
 
 /* Smooth Touch Scrolling & Prevent Horizontal Overflow */

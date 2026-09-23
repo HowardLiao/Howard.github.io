@@ -171,4 +171,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    // 9. Global Multi-Language Switcher (Preserves Hash & Smooth Transition)
+    window.switchLang = function(lang, e) {
+        if (e) e.preventDefault();
+        try {
+            localStorage.setItem('hl_lang', lang);
+        } catch(err) {
+            console.warn('LocalStorage not accessible:', err);
+        }
+        const hash = window.location.hash || '';
+        let target = 'index.html';
+        if (lang === 'en') {
+            target = 'index_en.html';
+        } else if (lang === 'ja') {
+            target = 'index_ja.html';
+        }
+        window.location.href = target + hash;
+    };
 });

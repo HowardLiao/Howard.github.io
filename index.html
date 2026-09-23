@@ -30,17 +30,17 @@
                 <li class="nav-link"><a href="#capability-matrix"><span data-i18n="nav.matrix">能力對照 </span> <span class="en-nav" data-i18n="nav.en_sub_matrix">Matrix</span></a></li>
                                 <li class="mobile-lang-item">
                     <div class="lang-selector" style="width: 100%; justify-content: center; margin: 8px 0;">
-                        <button type="button" class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">繁中</button>
-                        <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-                        <button type="button" class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+                        <a href="index.html" class="lang-btn active" onclick="switchLang('zh', event)">繁中</a>
+                        <a href="index_en.html" class="lang-btn" onclick="switchLang('en', event)">EN</a>
+                        <a href="index_ja.html" class="lang-btn" onclick="switchLang('ja', event)">日本語</a>
                     </div>
                 </li>
                 <li class="mobile-menu-action"><a href="#contact" class="btn-primary" style="justify-content: center; width: 100%; min-height: 48px;">聯絡合作 Contact</a></li>
             </ul>
-                        <div class="lang-selector">
-                <button type="button" class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">繁中</button>
-                <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-                <button type="button" class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+            <div class="lang-selector">
+                <a href="index.html" class="lang-btn active" onclick="switchLang('zh', event)">繁中</a>
+                <a href="index_en.html" class="lang-btn" onclick="switchLang('en', event)">EN</a>
+                <a href="index_ja.html" class="lang-btn" onclick="switchLang('ja', event)">日本語</a>
             </div>
             <a href="#contact" class="btn-contact-nav">聯絡合作 <span class="en-nav">Contact</span></a>
             <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">

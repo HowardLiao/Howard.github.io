@@ -234,6 +234,10 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     transition: var(--transition-smooth);
     letter-spacing: 0.3px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lang-btn:hover {

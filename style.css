@@ -1754,48 +1754,477 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
+    /* Global Container & Spacing */
+    :root {
+        --header-height: 64px;
     }
     
-    .hero-title {
-        font-size: 2.8rem;
+    .container {
+        padding: 0 16px;
+    }
+    
+    .section-padding {
+        padding: 56px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 32px;
+        text-align: left;
+    }
+    
+    .section-tag {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+        line-height: 1.25;
+        letter-spacing: -0.5px;
+    }
+    
+    .section-subtitle {
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+    
+    /* Navigation Bar */
+    .navbar {
+        height: 64px;
+    }
+    
+    .navbar .container {
+        padding: 0 16px;
+    }
+    
+    .logo-main {
+        font-size: 1.05rem;
+        gap: 6px;
+    }
+    
+    .logo-sub {
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+        max-width: 220px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .btn-contact-nav {
+        display: none !important; /* Hide from top header bar on mobile */
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 0;
     }
     
     .nav-links {
         display: none;
         position: fixed;
-        top: var(--header-height);
+        top: 64px;
         left: 0;
         width: 100%;
-        height: calc(100vh - var(--header-height));
-        background: var(--bg-dark);
+        height: calc(100vh - 64px);
+        height: calc(100dvh - 64px);
+        background: rgba(8, 11, 17, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
         border-top: 1px solid var(--border-color);
         flex-direction: column;
-        align-items: center;
-        padding-top: 60px;
-        gap: 40px;
-        z-index: 999;
+        align-items: stretch;
+        padding: 20px 16px 40px 16px;
+        gap: 8px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 9999;
     }
     
     .nav-links.active {
         display: flex;
+        animation: fadeIn 0.3s ease;
     }
     
-    .mobile-menu-toggle {
+    .nav-link {
+        width: 100%;
+    }
+    
+    .nav-link a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 18px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        width: 100%;
+    }
+    
+    .nav-link a:hover, .nav-link a:active {
+        background: rgba(var(--primary-rgb), 0.08);
+        border-color: rgba(var(--primary-rgb), 0.25);
+        color: var(--primary);
+    }
+    
+    .nav-link a::after {
+        display: none;
+    }
+    
+    .mobile-menu-action {
         display: block;
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    /* Hero Section Mobile UX */
+    .hero {
+        padding: 84px 0 40px 0;
+        min-height: auto;
     }
     
-    .bilingual-grid {
-        grid-template-columns: 1fr;
+    .hero .container {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        text-align: left;
     }
     
-    .pillars-grid {
-        grid-template-columns: 1fr;
+    .hero-content {
+        order: 1;
+        width: 100%;
     }
     
-    .cases-tabs {
+    .hero-visual {
+        order: 2;
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    .hero-tag {
+        font-size: 0.76rem;
+        padding: 5px 12px;
+        justify-content: flex-start;
+        margin-bottom: 14px;
         flex-wrap: wrap;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        line-height: 1.28;
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+        text-align: left;
+    }
+    
+    .hero-desc {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        text-align: left;
+        margin: 0 0 24px 0;
+    }
+    
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .hero-actions a {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        min-height: 48px;
+    }
+    
+    .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .stat-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 12px 14px;
+        text-align: left;
+    }
+    
+    .stat-number {
+        font-size: 1.75rem;
+        line-height: 1.1;
+    }
+    
+    .stat-label {
+        font-size: 0.72rem;
+        margin-top: 4px;
+    }
+    
+    .visual-glowing-ring {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .hero-card {
+        width: 100%;
+        padding: 20px 16px;
+        border-radius: 18px;
+    }
+    
+    /* Chapter 1: Vision Cards */
+    .profile-intro-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    
+    .intro-left {
+        padding-right: 0;
+    }
+    
+    .intro-title {
+        font-size: 1.25rem;
+    }
+    
+    .cdaio-card {
+        padding: 20px 16px;
+    }
+
+    /* Chapter 2: Timeline Job Cards */
+    .experience-timeline {
+        gap: 20px;
+    }
+    
+    .job-item {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+    
+    .job-company {
+        font-size: 1.2rem;
+        line-height: 1.35;
+    }
+    
+    .job-title {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    
+    .job-badge {
+        font-size: 0.76rem;
+        padding: 4px 10px;
+    }
+    
+    .job-details ul {
+        margin: 10px 0 14px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .job-challenge {
+        padding: 10px 14px;
+        font-size: 0.88rem;
+    }
+    
+    .job-reflection {
+        padding: 12px 14px;
+        font-size: 0.88rem;
+    }
+
+    /* Chapter 3: Skills */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Chapter 4: Academic Foundation */
+    .edu-card-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .recognition-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .image-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* STAR Projects on Mobile */
+    .cases-tabs {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .tab-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+    
+    .case-content-wrapper {
+        padding: 20px 16px;
+    }
+    
+    .case-stats-panel {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .case-stat-box {
+        padding: 14px;
+    }
+
+    /* Chapter 5: CISO Matching Table -> Native Card Transformation */
+    .table-container {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        overflow-x: visible;
+        margin-top: 16px;
+    }
+    
+    .ciso-matching-table {
+        min-width: 0;
+        display: block;
+        width: 100%;
+    }
+    
+    .ciso-matching-table thead {
+        display: none; /* Hide multi-column table header on mobile */
+    }
+    
+    .ciso-matching-table tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+    }
+    
+    .ciso-matching-table tr {
+        display: block;
+        background: rgba(16, 24, 40, 0.45);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 16px;
+        width: 100%;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .ciso-matching-table td {
+        display: block;
+        padding: 6px 0;
+        border: none;
+        font-size: 0.9rem;
+        line-height: 1.55;
+    }
+    
+    .ciso-matching-table td:first-child {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--primary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        padding-bottom: 10px;
+        margin-bottom: 8px;
+    }
+
+    /* Chapter 6: Strategic Playbook Console */
+    .alignment-console {
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+    
+    .console-tabs {
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 8px;
+        padding-bottom: 10px;
+        margin-bottom: 18px;
+    }
+    
+    .console-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .console-tab-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        border-radius: 20px;
+    }
+    
+    .console-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .contact-info-panel, .contact-form-panel {
+        padding: 20px 16px;
+        border-radius: 18px;
+    }
+    
+    .contact-item a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .form-control {
+        font-size: 16px; /* iOS Safari auto-zoom prevention */
+        padding: 14px 16px;
+        border-radius: 10px;
+    }
+    
+    .btn-form-submit {
+        min-height: 50px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
     }
 }
 
@@ -2613,4 +3042,129 @@ footer p {
 
 .job-details li strong {
     color: #fff;
+}
+
+/* Chapter 2: Timeline Job Cards Base Styles */
+.experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 30px;
+}
+
+.job-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.job-item:hover {
+    border-color: rgba(var(--primary-rgb), 0.25);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+}
+
+.job-meta {
+    margin-bottom: 16px;
+}
+
+.job-duration {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(var(--primary-rgb), 0.08);
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.job-company {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+}
+
+.job-title {
+    display: inline-block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 12px;
+}
+
+.job-challenge {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 18px;
+}
+
+.job-block-title {
+    font-size: 1.02rem;
+    font-weight: 700;
+    margin: 18px 0 10px 0;
+    color: var(--text-primary);
+}
+
+.job-reflection {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: rgba(var(--purple-rgb), 0.06);
+    border: 1px solid rgba(var(--purple-rgb), 0.15);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.job-reflection strong {
+    color: var(--purple);
+}
+
+/* Chapter 4 & 6 Grid Semantic Classes */
+.edu-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.recognition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.console-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+
+/* Smooth Touch Scrolling & Prevent Horizontal Overflow */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
 }

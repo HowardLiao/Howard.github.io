@@ -183,7 +183,41 @@ h1, h2, h3, h4, h5, h6 {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 18px;
+    align-items: center;
+}
+
+/* Hide mobile drawer items from desktop navbar */
+.mobile-menu-action,
+.mobile-lang-item {
+    display: none !important;
+}
+
+@media (min-width: 769px) and (max-width: 1120px) {
+    .nav-links {
+        gap: 10px;
+    }
+    .nav-link a {
+        font-size: 0.82rem;
+        padding: 4px 0;
+    }
+    .btn-contact-nav {
+        padding: 6px 12px !important;
+        font-size: 0.82rem !important;
+    }
+    .btn-download-nav {
+        padding: 6px 10px !important;
+        font-size: 0.78rem !important;
+        margin-right: 4px !important;
+    }
+    .lang-btn {
+        padding: 4px 8px !important;
+        font-size: 0.72rem !important;
+    }
+    .visual-glowing-ring {
+        width: 280px !important;
+        height: 280px !important;
+    }
 }
 
 .nav-link a {
@@ -452,6 +486,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    max-width: 100%;
 }
 
 .visual-glowing-ring {
@@ -1811,6 +1847,11 @@ footer p {
     .container {
         padding: 0 16px;
     }
+
+    .glass-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
     
     .section-padding {
         padding: 56px 0;
@@ -1951,9 +1992,15 @@ footer p {
     }
     
     .mobile-menu-action {
-        display: block;
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
         margin-top: 12px;
         width: 100%;
+    }
+
+    .mobile-lang-item {
+        display: block !important;
     }
 
     /* Hero Section Mobile UX */
@@ -1978,6 +2025,8 @@ footer p {
         order: 2;
         width: 100%;
         margin-top: 8px;
+        overflow: hidden;
+        max-width: 100%;
     }
     
     .hero-tag {
@@ -2048,8 +2097,10 @@ footer p {
     }
     
     .visual-glowing-ring {
-        width: 260px;
-        height: 260px;
+        width: 180px;
+        height: 180px;
+        max-width: 60vw;
+        max-height: 60vw;
     }
     
     .hero-card {
@@ -2060,12 +2111,17 @@ footer p {
     
     /* Chapter 1: Vision Cards */
     .profile-intro-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 18px;
+    }
+
+    .profile-intro-layout > * {
+        min-width: 0;
+        max-width: 100%;
     }
     
     .intro-left {
-        padding-right: 0;
+        padding-right: 0 !important;
     }
     
     .intro-title {
@@ -2120,6 +2176,11 @@ footer p {
     .skills-grid {
         grid-template-columns: 1fr;
         gap: 14px;
+    }
+
+    .pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
     }
 
     /* Chapter 4: Academic Foundation */
